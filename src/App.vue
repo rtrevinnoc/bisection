@@ -79,13 +79,11 @@ export default {
       return (this.x_lower + this.x_upper) / 2;
     },
     error(cur, prev) {
-      return (Math.abs(cur - prev) / cur) * 100;
+      return Math.abs((cur - prev) / cur) * 100;
     },
     solve() {
       this.max_error = Math.max(this.max_error, 5);
       if (this.f(this.x_lower) * this.f(this.x_upper) < 0) {
-        // while (this.f(this.x_lower) * this.f(this.x) !== 0) {
-        // while (this.f() * this.f(this.x) !== 0) {
         let prev = 100;
         while (this.error(this.x, prev) > this.max_error) {
           prev = this.x;
@@ -100,8 +98,6 @@ export default {
     },
   },
 };
-
-// console.log(math.evaluate("2x", { x: 3 }));
 </script>
 
 <style>
@@ -111,10 +107,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-}
-
-ul {
-  list-style: none;
+  margin: 60px;
 }
 </style>
