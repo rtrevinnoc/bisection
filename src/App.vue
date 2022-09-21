@@ -82,18 +82,23 @@ export default {
       return Math.abs((cur - prev) / cur) * 100;
     },
     solve() {
-      this.max_error = Math.max(this.max_error, 5);
+      this.max_error = Math.max(this.max_error, 3);
       if (this.f(this.x_lower) * this.f(this.x_upper) < 0) {
         let prev = 100;
+        // let count = 0;
         while (this.error(this.x, prev) > this.max_error) {
+          // if (count > 50) break;
           prev = this.x;
           this.x = this.bisection();
           if (this.f(this.x_lower) * this.f(this.x) > 0) {
-            this.x_upper = this.x;
-          } else if (this.f(this.x_lower) * this.f(this.x) < 0) {
             this.x_lower = this.x;
+          } else if (this.f(this.x_lower) * this.f(this.x) < 0) {
+            this.x_upper = this.x;
           }
+          // count++;
         }
+      } else {
+        alert("La raiz no esta en el rango");
       }
     },
   },
